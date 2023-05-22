@@ -1,0 +1,94 @@
+<%- include('partials/header') -%>
+
+<body id="page-top">
+    <div class="container">
+    <h4 class="my-4" style="color: #004AAD;"><strong>Profile</strong></h4>
+    <% users.forEach(user => { %>
+    <%- include('partials/messages') -%>
+    <div class="row">
+        <div class="col-md-5 mb-4">
+            <div class="card h-100">
+                <div class="card-body" style="background-color: #ECF6FF;">
+                    <img class="rounded-circle profile-pic" src="/profiles/<%= user.image ? user.image : 'default_user.png' %>">
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong><%= buser.gender === 'Male' ? 'Mr.' : 'Mrs.' %> <%= buser.name %></strong></h1>
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong><%= buser.role === 'super admin' ? 'Administrator' : buser.role %></strong></h1>
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Mess Management Team</strong></h1><br><br>
+                    
+                    <input type="button" class="btn btn-primary mb-2" value="Update Profile" data-toggle="modal" data-target="#Update" style="background-color: #32B9FF; border: none; width: 180px; display: inline-block; justify-content: center; margin-right: 20px; border-radius: 20px;font-family: Roboto, sans-serif;">
+                   
+                   <!-- Modal -->
+                <div class="modal fade" id="Update" tabindex="-1" aria-labelledby="add Stipend modal" aria-hidden="true">
+                    <div class="modal-dialog d-flex justify-content-center">
+                        <div class="modal-content w-75" style="border-radius: 15px; margin-left: 30px;">
+                            <div class="modal-header">
+                                <img src="\img\Mess.png" style="width: 90px;height: 80px; margin-left: 120px; margin-top: 20px;">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            
+                            <div class="modal-body p-4">
+                                <form action="/old/<%= buser._id %>" method="POST" enctype="multipart/form-data">
+                                    <!-- Name -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="name" style="font-family: Roboto, sans-serif; color: #000000; margin-right: 250px;">Full Name</label>
+                                        <input type="text" id="name" name="name" value="<%= buser.name %>" class="form-control"/>
+                                    </div>
+
+                                    <!-- gender -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="gender" style="font-family: Roboto, sans-serif; color: #000000; margin-right: 270px;">Gender</label>
+                                        <select type="text" class="form-control" id="gender" name="gender" required>
+                                            <option value="">Select Gender</option>
+                                            <option value="Male" <%= (buser.gender === 'Male') ? 'selected' : '' %>>Male</option>
+                                            <option value="Female" <%= (buser.gender === 'Female') ? 'selected' : '' %>>Female</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- contact -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="contact" style="font-family: Roboto, sans-serif; color: #000000; margin-right: 270px;">Contact</label>
+                                        <input type="text" id="contact" value="<%= buser.contact %>" name="contact" class="form-control" />
+                                    </div>
+
+                                    <!-- Image -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label1" for="formFile" style="font-family: Roboto, sans-serif; color: #000000; margin-right: 220px;">Profile Picture</label>
+                                        <input class="form-control" type="file" name="image" id="formFile" style="padding-bottom: 35px;">
+                                        <img class="rounded-circle profile-pic" src="/profiles/<%= buser.image ? buser.image : 'default_user.png' %>" width="100" class="img-thumbnail mt-1">
+                                      </div>
+                                      <input type="hidden" name="old_image" value="<%= buser.image %>">
+                                    
+                                    <!-- Submit button -->
+                                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #32B9FF !important; border: none;padding-top: 8px; font-family: Roboto, sans-serif;">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <div class="card h-100">
+                <div class="card-body" style="background-color: #ECF6FF;">
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Full Name: </strong><br><%= buser.name %></h1><br>
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Email: </strong><br><%= buser.email %></h1><br>
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Gender: </strong><br><%= buser.gender %></h1><br> 
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Contact Number: </strong><br>+975-<%=buser.contact %></h1><br> 
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Role: </strong><br><%= buser.role === 'super admin' ? 'Administrator' : buser.role %></h1>  
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+</div>
+
+<%- include('partials/footer') -%>
+</body>
+
+
+

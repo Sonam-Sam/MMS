@@ -1,0 +1,55 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<footer class="bg-white sticky-footer">
+    <div class="container my-auto">
+        <div class="text-center my-auto copyright"><span>Copyright © GCIT Mess 2023</span></div>
+    </div>
+</footer>
+
+<div id="scroll-to-top-container">
+    <a class="btn rounded-circle border-0 scroll-to-top" href="#page-top" style="background-color: rgb(50,185,255); padding-top: 11px;">
+      <i class="fas fa-angle-up"></i>
+    </a>
+</div>
+
+<script>
+    var button = document.querySelector('#scroll-to-top-container');
+
+    window.addEventListener('scroll', function() {
+      button.style.display = (window.scrollY > 0) ? "block" : "none";
+    });
+
+    // Hide the button if the page is already at the top when the page loads
+    window.onload = function() {
+      if (window.scrollY === 0) {
+        button.style.display = "none";
+      }
+    };
+</script>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="/myScripts/details-form.js"></script>
+<script src="/myScripts/stipend-form.js"></script> -->
+<script src="/js/chart.min.js"></script>
+<script src="/js/bs-init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+<script src="/js/theme.js"></script>
+
+<script src="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("table").DataTable({
+            order : [0, 'desc']
+        });
+    });
+</script>
+
+<!-- Script for preloader -->
+<script>
+  var loader = document.getElementById("preloader");
+  window.addEventListener("load", function(){
+    loader.style.display = "none";
+  });
+</script>

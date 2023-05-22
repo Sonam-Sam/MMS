@@ -1,0 +1,57 @@
+<%- include('partials/header') -%>
+
+<body id="page-top">
+
+  <div class="login-clean">
+    <form
+      action="/login"
+      method="post"
+      style="background-color: rgb(255, 255, 255); border-radius: 15px"
+    >
+      <%- include('partials/messages') -%>
+      <h2 class="sr-only">Login Form</h2>
+      <div class="illustration" style="margin-bottom: 20px">
+        <img src="/img/Mess.png" style="width: 100px; height: 100px" />
+      </div>
+      <div class="form-group">
+        <label style="font-weight: bold">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          required
+          style="border-radius: 10px"
+        />
+      </div>
+      <div class="form-group">
+        <label style="font-weight: bold">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          required
+          style="border-radius: 10px"
+        />
+      </div>
+      <a class="forgot" href="/forgot" style="font-family: Roboto, sans-serif; font-weight: bold; color: rgb(50, 185, 255); font-size: 12px; margin-left: 220px;">Forgot Password?</a>
+  
+      <div class="form-group">
+        <button
+          class="btn btn-primary btn-block"
+          type="submit"
+          style="
+            background-color: rgb(50, 185, 255);
+            font-family: Roboto, sans-serif;
+            border-radius: 10px;
+            font-weight: semi-bold;
+          "
+        >
+          Log In
+        </button>
+      </div>
+    </form>
+  </div>
+
+</body>
+
+<%- include('partials/footer') -%>

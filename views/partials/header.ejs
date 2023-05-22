@@ -1,0 +1,93 @@
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="/css/Login-Form-Clean-1.css">
+<link rel="stylesheet" href="/css/Login-Form-Clean.css">
+<link rel="stylesheet" href="/css/styles.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-qRiz5fOs/KVJ+uqtE5pUD7XuYGpwJ8x7z/khPpJmCzDfZq8Wq37hPY2c/zJrdR9+ld0MgIA4H4JBJs4NQ6l2jw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+
+<!-- SEPARATED -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+<link rel="stylesheet" href="/fonts/fontawesome-all.min.css">
+
+<link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+
+<link rel="stylesheet" href="/css/carousel.css">
+<link rel="stylesheet" href="/css/Custom-File-Upload.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/gradient-navbar-1.css">
+<link rel="stylesheet" href="/css/gradient-navbar.css">
+
+<!-- Landing Page CSS -->
+<link rel="stylesheet" href="/css/description-explaination.css">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/description.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/nevigation-bar.css">
+<link rel="stylesheet" href="/css/our-vision2column.css">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/fonts/font-awesome.min.css">
+
+<!-- Profile -->
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<link rel="stylesheet" href="/css/Profile-Card.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+<!-- For Page Loader -->
+<div id="preloader"></div>
+
+<nav class="navbar navbar-dark navbar-expand-md" id="app-navbar">
+    <div class="container-fluid">
+        <% if (!currentUser) { %>
+            <a class="navbar-brand" href="/"><img src="/img/Mess.png" width="50px" height="50px"></a>
+        <% } else { %>
+            <a class="navbar-brand" href="/ubills"><img src="/img/Mess.png" width="50px" height="50px"></a>
+        <% } %>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            
+            <ul class="nav navbar-nav text-center ml-auto" style="color: rgb(0,0,0);">
+                <% if(!currentUser) { %>
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="/" style="color: rgb(0,0,0);font-weight: bold;background-color: transparent;" onmouseover="this.style.backgroundColor='transparent'; this.style.color='rgb(0,74,173)';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgb(0,0,0)';">Home</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="/signup" style="color: rgb(0,0,0);font-weight: bold;background-color: transparent;" onmouseover="this.style.backgroundColor='transparent'; this.style.color='rgb(0,74,173)';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgb(0,0,0)';">Register</a></li>
+                <li class="nav-item" role="presentation"><button class="btn btn-primary" type="button" style="background-color: rgb(0,74,173);font-weight: bold; border-radius: 50px;"><a href="/login" style="color: #fff;">Login</a></button></li>
+                <% } else { %>
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="udetails" style="color: rgb(0,0,0);font-weight: bold;background-color: transparent;" onmouseover="this.style.backgroundColor='transparent'; this.style.color='rgb(0,74,173)';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgb(0,0,0)';">Details Sheet</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/ubills" style="color: rgb(0,0,0);font-weight: bold;" onmouseover="this.style.backgroundColor='transparent'; this.style.color='rgb(0,74,173)';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgb(0,0,0)';">Bills</a></li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="/ureports" style="color: rgb(0,0,0);font-weight: bold;" onmouseover="this.style.backgroundColor='transparent'; this.style.color='rgb(0,74,173)';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgb(0,0,0)';">Reports</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><img class="border rounded-circle img-profile" style="background-color: #FFFFFF;" src="/profiles/<%= currentUser.image %>" width="32px" height="32px"></a>
+                      <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
+                          <a class="dropdown-item" role="presentation" href="/profile">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile
+                          </a>
+                          <a class="dropdown-item" role="presentation" href="/password/change"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Change Password</a>
+                          <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="/logout"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
+                      </div>                           
+                    </div>
+                </li>
+
+                
+                <% } %>
+            </ul>
+    </div>
+    </div>
+</nav>

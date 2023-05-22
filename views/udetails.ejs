@@ -1,0 +1,115 @@
+<%- include('partials/header') -%>
+
+<body id="page-top">
+  <div class="container-fluid" style="margin-bottom: 40px;">
+    <!-- Monthly kitchen budget -->
+    <div class="d-sm-flex justify-content-between align-items-center mb-4" style="margin-top: 30px;">
+      <h3 class="text-dark mb-4" style="font-family: Roboto, sans-serif; margin-left: 22px; font-weight: bold; margin-top: 20px;">Monthly Kitchen Budgets</h3>
+    </div>
+
+    <!-- For user input -->
+    <div class="row">
+      <form class="form-inline" method="post" action="/udetails/search" style="margin-left: 25px; margin-bottom: 20px;">
+        <div class="form-group mb-2 mr-2">
+          <select class="form-control" name="syear" required>
+            <option value="">Choose Year</option>
+            <% for (let year = 2017; year <= new Date().getFullYear(); year++) { %>
+            <option value="<%= year %>" <%= (syear == year) ? 'selected' : '' %>><%= year %></option>
+            <% } %>
+          </select>
+        </div>
+
+        <div class="form-group mb-2 mr-2">
+          <select class="form-control" name="smonth" required>
+            <option value="">Choose Month</option>
+            <% for (let i = 1; i <= 12; i++) { %>
+            <% const monthName = new Date(2000, i-1, 1).toLocaleDateString('default', { month: 'long' }); %>
+            <% const selected = (data.date instanceof Date && i === data.date.getMonth() + 1) ? 'selected' : ''; %>
+            <option value="<%= i %>" <%= selected %>><%= monthName %></option>
+            <% } %>
+          </select>
+        </div>
+        <input type="submit" class="btn btn-primary mb-2" value="Search" style="background-color: #32B9FF; border: none; width: 130px; justify-content: center;">
+      </form>
+
+      <div class="container-fluid">
+        <%- include('partials/messages') -%>
+        <div class="card shadow">
+          <div class="card-body">
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+              <table class="table dataTable my-0" id="dataTable">
+                <thead>
+                  <tr>
+                    <th>Date of Purchase</th>
+                    <th>Cash Memo</th>
+                    <th>Vendor</th>
+                    <th>Items</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                    <th>JRNL No</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% if (smonth && syear) { %>
+                  <% details.forEach(function(detail, index) { %>
+                  <tr>
+                    <td><%= detail.purchasedate.toLocaleDateString() %></td>
+                    <td><%= detail.memo %></td>
+                    <td><%= detail.vendor %></td>
+                    <td><%= detail.item %></td>
+                    <td><%= detail.quantity %></td>
+                    <td><%= detail.unit %></td>
+                    <td><%= detail.rate %></td>
+                    <td><%= detail.amount %></td>
+                    <td><%= detail.jrlno %></td>
+                  </tr>
+                  <% }); %>
+                  <tr>
+                    <td colspan="7" style="font-family: Roboto, sans-serif; font-weight: bold;">Total Expenditure</td>
+                    <td colspan="2" style="font-weight: bold;"><%= data.useAmount %></td>
+                  </tr>
+                  <% } else { %>
+                  <% details.forEach(function(detail, index) {
+                    const detailDate = new Date(detail.purchasedate);
+                    const day = detailDate.getDate().toString().padStart(2, '0');
+                    const month = (detailDate.getMonth() + 1).toString().padStart(2, '0');
+                    const year = detailDate.getFullYear().toString();
+                    const dateString = `${year}-${month}-${day}`;
+    
+                    const today = new Date();
+                    const latestMonth = (today.getMonth() + 1).toString().padStart(2, '0');
+                    const latestYear = today.getFullYear().toString();
+    
+                    if (month === latestMonth && year === latestYear) { %>
+                  <tr>
+                    <td><%= detail.purchasedate.toLocaleDateString() %></td>
+                    <td><%= detail.memo %></td>
+                    <td><%= detail.vendor %></td>
+                    <td><%= detail.item %></td>
+                    <td><%= detail.quantity %></td>
+                    <td><%= detail.unit %></td>
+                    <td><%= detail.rate %></td>
+                    <td><%= detail.amount %></td>
+                    <td><%= detail.jrlno %></td>
+                  </tr>
+                  <% } %>
+                  <% }); %>
+                  <tr>
+                    <td colspan="7" style="font-family: Roboto, sans-serif; font-weight: bold;">Total Expenditure</td>
+                    <td colspan="2" style="font-weight: bold;"><%= data.useAmount %></td>
+                  </tr>
+                  <% } %>
+                </tbody>
+    
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<%- include('partials/footer') -%>    

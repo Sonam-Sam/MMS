@@ -1,0 +1,97 @@
+<%- include('partials/aheader') -%>
+
+<div class="modal-body p-4">
+  <form method="POST" action="/add_stipend">
+
+    <!-- Year -->
+    <div class="form-outline mb-4">
+        <label
+          class="form-label"
+          for="Stipend1"
+          style="font-family: Roboto, sans-serif; color: #000000"
+          >Year</label
+        >
+        <select type="text" class="form-control" id="year" name="year" required>
+          <option value="">Choose year</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+        </select>
+      </div>
+
+    <!-- Month -->
+    <div class="form-outline mb-4">
+      <label
+        class="form-label"
+        for="total student"
+        style="font-family: Roboto, sans-serif; color: #000000"
+        >Month</label
+      >
+      <select type="text" class="form-control" id="name" name="month" required>
+        <option value="">Select a Month...</option>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+      </select>
+    </div>
+
+    <!-- Total student -->
+    <div class="form-outline mb-4">
+      <label
+        class="form-label"
+        for="total student"
+        style="font-family: Roboto, sans-serif; color: #000000"
+        >Total Student</label
+      >
+      <input type="text" id="total student" name="student" class="form-control" required/>
+    </div>
+
+    <!-- Stipend per head -->
+    <div class="form-outline mb-4">
+      <label
+        class="form-label"
+        for="Stipend"
+        style="font-family: Roboto, sans-serif; color: #000000"
+        >Stipend per head</label
+      >
+      <input type="text" id="Stipend1" name="stipend" class="form-control" required/>
+    </div>
+
+    <!-- Cut off per head -->
+    <div class="form-outline mb-4">
+      <label
+        class="form-label"
+        for="cutpoff"
+        style="font-family: Roboto, sans-serif; color: #000000"
+        >Cut off per head</label
+      >
+      <input type="text" id="cutoff1" name="cutoff" class="form-control" required/>
+    </div>
+
+    <!-- Submit button -->
+    <button
+      type="submit"
+      class="btn btn-primary btn-block"
+      style="
+        background-color: #32b9ff;
+        border: none;
+        font-family: Roboto, sans-serif;
+      "
+    >
+      Add
+    </button>
+  </form>
+</div>

@@ -1,0 +1,78 @@
+<%- include('partials/header') -%>
+
+<body id="page-top">
+
+  <div>
+    <h1 class="text-center" style="font-size: 24px; margin-top: 26px; color: rgb(5,8,10); justify-content: center;">
+       <strong> Search for</strong> <span style="color: rgb(0, 0, 255); font-weight: bold;">BILLS</span>
+    </h1>
+ </div>
+
+  <!-- Search Input Fields  -->
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="row" style="position: flex; justify-content: center;">
+
+              <form action="/ubills/search" method="POST" style="margin-left: 25px; margin-bottom: 20px;">
+                <div class="d-flex justify-content-between">
+                  <div class="form-group mr-2">
+                    <select class="form-control" name="year" required>
+                      <option value="">Choose Year</option>
+                      <% for (let year = 2017; year <= new Date().getFullYear(); year++) { %>
+                      <option value="<%= year %>" <%= (year == bills.year) ? 'selected' : '' %>><%= year %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group mr-2">
+                    <select class="form-control" name="month" required>
+                      <option value="">Choose Month</option>
+                      <option value="January" <%= (bills.month === 'January') ? 'selected' : '' %>>January</option>
+                      <option value="February" <%= (bills.month === 'February') ? 'selected' : '' %>>February</option>
+                      <option value="March" <%= (bills.month === 'March') ? 'selected' : '' %>>March</option>
+                      <option value="April" <%= (bills.month === 'April') ? 'selected' : '' %>>April</option>
+                      <option value="May" <%= (bills.month === 'May') ? 'selected' : '' %>>May</option>
+                      <option value="June" <%= (bills.month === 'June') ? 'selected' : '' %>>June</option>
+                      <option value="July" <%= (bills.month === 'July') ? 'selected' : '' %>>July</option>
+                      <option value="August" <%= (bills.month === 'August') ? 'selected' : '' %>>August</option>
+                      <option value="September" <%= (bills.month === 'September') ? 'selected' : '' %>>September</option>
+                      <option value="October" <%= (bills.month === 'October') ? 'selected' : '' %>>October</option>
+                      <option value="November" <%= (bills.month === 'November') ? 'selected' : '' %>>November</option>
+                      <option value="December" <%= (bills.month === 'December') ? 'selected' : '' %>>December</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-primary mb-2" style="background-color: #32B9FF; border: none; width: 130px; justify-content: center;">
+                  </div>
+                </div>
+              </form>
+                
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div style="background-color: #ecf6ff;margin-top: 12px;">
+    <div class="container">
+      <%- include('partials/messages') -%>
+     <% if (bills && bills.length > 0) { %>
+      <div class="row">
+        <% bills.forEach((bill) => { %>
+          <div class="col-md-4 text-left">
+            <img src="/<%= bill.image %>" alt="Bill Image" style="height: 200px; margin-top: 18px; width: 400px;">
+            <h1 class="text-left" style="font-size: 16px; padding-top: 12px;"><strong>Title: </strong><%= bill.title %></h1>
+            <h1 class="text-left" style="font-size: 16px;"><strong>Date: </strong><%= bill.month %>, <%= bill.year %></h1>
+            <h1 class="text-left" style="font-size: 16px;"><strong>Description: </strong><%= bill.description %></h1>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <h1 class="text-center text-secondary mt-5">No bills have been uploaded by an Admin!</h1>
+    <% } %>
+    
+  </div>
+  <br>
+</body>
+<%- include('partials/footer') -%>

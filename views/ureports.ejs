@@ -1,0 +1,88 @@
+<%- include('partials/header') -%>
+
+<body id="page-top">
+  <div id="wrapper">
+      <div class="d-flex flex-column" id="content-wrapper">
+          <div id="content">
+              <div class="container-fluid" style="margin-bottom: 40px;">
+                  
+                <div>
+                  <h1 class="text-center" style="font-size: 24px; margin-top: 26px; color: rgb(5,8,10); justify-content: center;">
+                    <strong> Search for</strong> <span style="color: rgb(0, 0, 255); font-weight: bold;">REPORTS</span>
+                  </h1>
+                </div>
+                
+                <!-- Search Input Fields  -->
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-10 col-sm-12">
+                            <div class="row" style="position: flex; justify-content: center;">
+                
+                              <form action="/ureports/search" method="POST" style="margin-left: 25px; margin-bottom: 20px;">
+                                <div class="d-flex justify-content-between">
+                                  <div class="form-group mr-2">
+                                    <select class="form-control" name="year" required>
+                                      <option value="">Choose Year</option>
+                                      <% for (let year = 2017; year <= new Date().getFullYear(); year++) { %>
+                                      <option value="<%= year %>" <%= (year == reports.year) ? 'selected' : '' %>><%= year %></option>
+                                      <% } %>
+                                    </select>
+                                  </div>
+                                  
+                                  <div class="form-group mr-2">
+                                    <select class="form-control" name="month" required>
+                                      <option value="">Choose Month</option>
+                                      <option value="January" <%= (reports.month === 'January') ? 'selected' : '' %>>January</option>
+                                      <option value="February" <%= (reports.month === 'February') ? 'selected' : '' %>>February</option>
+                                      <option value="March" <%= (reports.month === 'March') ? 'selected' : '' %>>March</option>
+                                      <option value="April" <%= (reports.month === 'April') ? 'selected' : '' %>>April</option>
+                                      <option value="May" <%= (reports.month === 'May') ? 'selected' : '' %>>May</option>
+                                      <option value="June" <%= (reports.month === 'June') ? 'selected' : '' %>>June</option>
+                                      <option value="July" <%= (reports.month === 'July') ? 'selected' : '' %>>July</option>
+                                      <option value="August" <%= (reports.month === 'August') ? 'selected' : '' %>>August</option>
+                                      <option value="September" <%= (reports.month === 'September') ? 'selected' : '' %>>September</option>
+                                      <option value="October" <%= (reports.month === 'October') ? 'selected' : '' %>>October</option>
+                                      <option value="November" <%= (reports.month === 'November') ? 'selected' : '' %>>November</option>
+                                      <option value="December" <%= (reports.month === 'December') ? 'selected' : '' %>>December</option>
+                                    </select>
+                                  </div>
+                                  
+                                  <div class="form-group">
+                                    <input type="submit" value="Search" class="btn btn-primary mb-2" style="background-color: #32B9FF; border: none; width: 130px; justify-content: center;">
+                                  </div>
+                                </div>
+                              </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                  <%- include('partials/messages') -%>
+                  <% if (reports && reports.length > 0) { %> 
+                    <div class="container-fluid">
+                      <% reports.slice(0, 5).forEach((report, index) => { %>
+                      <!-- STARTS -->
+                      <div class="row align-items-center" style="margin-top: 12px;">
+                        <div class="col-9">
+                          <h2 style="font-size: 16px; margin-top: 20px;"><%= report.month %>, <%= report.year %>: <%= report.title %></h2>
+                        </div>
+                      </div>
+                  
+                      <div class="row">
+                        <div class="col">
+                          <iframe src="data:<%= report.file.contentType %>;base64,<%= report.file.data.toString('base64') %>" width="100%" height="300"></iframe>
+                        </div>
+                      </div>
+                      <% }) %>
+                      <!-- ENDS -->
+                    </div>
+                    <br><br>
+                  <% } else { %>
+                    <h1 class="text-center text-secondary mt-5">No reports have been added by the admin to the Database!</h1>
+                  <% } %>                  
+              </div>
+   
+  </div>
+</body>
+<%- include('partials/footer') -%>

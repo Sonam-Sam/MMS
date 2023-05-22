@@ -1,0 +1,121 @@
+.upload {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    /* add a solid black line to the bottom */
+}
+
+.btn-upload{
+    margin-left: auto;
+    background-color: blue;
+    color: black;
+}
+
+.search {
+    text-align: center;
+
+  }
+  h3 {
+    margin-top: 0%;
+    color: black;
+    margin-left: 20px;
+  }
+  form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+  }
+  .search-input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  label{
+
+    display: block;
+    margin-bottom: 0.5em;
+    text-align: left;
+    color: black;
+  }
+  select,
+  .btn-button {
+    padding: 0.5em;
+    width:50%;
+    box-sizing: border-box;
+    margin: 0.5em 0;
+    margin-top: 1em;
+  }
+
+  button.btn-button {
+    margin-top: 50px;
+}
+ 
+.search-input {
+    margin-left: 100px;
+}
+
+h2 {
+    margin-left: 20px;
+    color: black;
+}
+
+button.btn-upload {
+    margin-right: 30px;
+    width: 100px;
+    height: 30px;
+}
+button.btn-button {
+    background-color: blue;
+    border: 0.5px;
+}
+.table{
+    margin: 20px;
+}
+.table, th, td {
+    border: 1px solid black;
+    color: black;
+}
+tbody {
+    height: 300px;
+}
+.button {
+    background-color: #148CFA;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 0.5px;
+  }
+  .pagination {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 15px;
+    border-radius: 5px;
+    background-color: #32B9FF;
+  }
+  
+  .pagination a.active {
+    background-color: #004AAD;
+    color: black;
+    border: 1px solid #004AAD;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #004AAD; color: black;}

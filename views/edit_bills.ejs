@@ -1,0 +1,86 @@
+<%- include('partials/aheader') -%>
+
+<body id="page-top">
+  <div id="wrapper">
+    <%- include('partials/sidebar') -%>
+      <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+              <%- include('partials/profiledrop') -%>
+            </nav>
+
+            <div class="modal-dialog d-flex justify-content-center">
+              <div class="modal-content w-100" style="border-radius: 15px;">
+                  <div class="modal-header">
+                      <img src="\img\Mess.png" style="width: 90px; height: 80px; margin-left: 180px; margin-top: 20px;">
+                  </div>
+                  
+                  <div class="modal-body p-4">
+                    <form action="/update/<%= bill._id %>" method="POST" enctype="multipart/form-data">
+                        <!-- Item Name -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="itmename" style="font-family: Roboto, sans-serif; color: #000000">Item Name</label>
+                            <input type="text" class="form-control" id="name" value="<%= bill.title %>" name="title" required>
+                        </div>
+                  
+                        <!-- Month -->
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="total student" style="font-family: Roboto, sans-serif; color: #000000">Month</label>
+                          <select class="form-control" id="name" name="month" required>
+                              <option value="">Select a Month...</option>
+                              <option value="January" <%= (bill.month === 'January') ? 'selected' : '' %>>January</option>
+                              <option value="February" <%= (bill.month === 'February') ? 'selected' : '' %>>February</option>
+                              <option value="March" <%= (bill.month === 'March') ? 'selected' : '' %>>March</option>
+                              <option value="April" <%= (bill.month === 'April') ? 'selected' : '' %>>April</option>
+                              <option value="May" <%= (bill.month === 'May') ? 'selected' : '' %>>May</option>
+                              <option value="June" <%= (bill.month === 'June') ? 'selected' : '' %>>June</option>
+                              <option value="July" <%= (bill.month === 'July') ? 'selected' : '' %>>July</option>
+                              <option value="August" <%= (bill.month === 'August') ? 'selected' : '' %>>August</option>
+                              <option value="September" <%= (bill.month === 'September') ? 'selected' : '' %>>September</option>
+                              <option value="October" <%= (bill.month === 'October') ? 'selected' : '' %>>October</option>
+                              <option value="November" <%= (bill.month === 'November') ? 'selected' : '' %>>November</option>
+                              <option value="December" <%= (bill.month === 'December') ? 'selected' : '' %>>December</option>
+                          </select>
+                        </div>
+                  
+                        <!-- Year -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="Stipend1" style="font-family: Roboto, sans-serif; color: #000000">Year</label>
+                            <select class="form-control" id="year" name="year" required>
+                              <option value="">Choose year</option>
+                              <% for (let year = 2017; year <= new Date().getFullYear(); year++) { %>
+                                <option value="<%= year %>" <%= (bill.year === year.toString()) ? 'selected' : '' %>><%= year %></option>
+                              <% } %>
+                            </select>
+                        </div>
+                  
+                        <!-- Description -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="textarea1"  style="font-family: Roboto, sans-serif; color: #000000">Description</label>
+                            <input type="text" class="form-control" id="name" value="<%= bill.description %>" name="description" required>
+                        </div>
+                        
+                        <!-- Image -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label1" for="formFile" style="font-family: Roboto, sans-serif; color: #000000">Image</label>
+                            <input type="file" class="form-control" id="image" name="image" style="padding-bottom: 35px;">
+                            <img src="/<%= bill.image %>" width="100" class="img-thumbnail mt-1">
+                        </div>
+                          <input type="hidden" name="old_image" value="<%= bill.image %>">
+                        
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block" style="background-color: #32B9FF; border: none;font-family: Roboto, sans-serif;">Update Bill</button>
+                    </form>
+                  </div>
+              </div>
+            </div>
+              
+        </div>
+      </div>
+  </div>
+  
+</body>
+<%- include('partials/afooter') -%>
+
+
+

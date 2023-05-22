@@ -1,0 +1,66 @@
+<%- include('partials/aheader') -%>
+
+<div class="modal-body p-4">
+  <form method="POST" action="/add_bills" enctype="multipart/form-data">
+      <!-- Item Name -->
+      <div class="form-outline mb-4">
+          <label class="form-label" for="itmename" style="font-family: Roboto, sans-serif; color: #000000">Item Name</label>
+          <input type="text" class="form-control" id="name" name="title" required>
+      </div>
+
+      <!-- Month -->
+      <div class="form-outline mb-4">
+          <label class="form-label" for="total student" style="font-family: Roboto, sans-serif; color: #000000">Month</label>
+          <select type="text" class="form-control" id="name" name="month" required>
+            <option value="">Select a Month...</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+      </div>
+
+      <!-- Year -->
+      <div class="form-outline mb-4">
+          <label class="form-label" for="year" style="font-family: Roboto, sans-serif; color: #000000">Year</label>
+          <select class="form-control" id="year" name="year" required>
+            <option value="">Choose year</option>
+          </select>
+
+          <script>
+            const yearSelect = document.getElementById('year');
+            const currentYear = new Date().getFullYear();
+
+            for (let year = 2017; year <= currentYear; year++) {
+              const option = document.createElement('option');
+              option.value = year;
+              option.textContent = year;
+              yearSelect.appendChild(option);
+            }
+          </script>
+      </div>
+
+      <!-- Description -->
+      <div class="form-outline mb-4">
+          <label class="form-label" for="textarea1"  style="font-family: Roboto, sans-serif; color: #000000">Description</label>
+          <input type="text" class="form-control" id="name" name="description" required>
+      </div>
+
+      <!-- Image -->
+      <div class="form-outline mb-4">
+          <label class="form-label1" for="formFile" style="font-family: Roboto, sans-serif; color: #000000">Image</label>
+          <input type="file" class="form-control" id="image" name="image" style="padding-bottom: 35px;" accept="image/*" required>
+        </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary btn-block" style="background-color: #32B9FF; border: none;font-family: Roboto, sans-serif;">Add</button>
+  </form>
+</div>

@@ -1,0 +1,252 @@
+<%- include('partials/aheader') -%>
+<!-- For Page Loader -->
+<div id="preloader"></div>
+
+<body id="page-top">
+  <div id="wrapper">
+    <%- include('partials/sidebar') -%>
+    <div class="d-flex flex-column" id="content-wrapper">
+      <div id="content">
+        <nav
+          class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top"
+        >
+          <%- include('partials/profiledrop') -%>
+        </nav>
+        <div class="container-fluid" style="margin-bottom: 40px">
+          <!-- Bills -->
+          <div
+            class="d-sm-flex justify-content-between align-items-center mb-4"
+          >
+            <h3
+              class="text-dark mb-4"
+              style="
+                font-family: Roboto, sans-serif;
+                margin-left: 22px;
+                margin-top: 20px;
+                font-weight: bold;
+              "
+            >
+              Student Stipend Statement REPORTS
+            </h3>
+            <input
+              type="button"
+              class="btn btn-primary mb-2"
+              value="Add Report"
+              data-toggle="modal"
+              data-target="#addreports"
+              style="
+                background-color: #32b9ff;
+                border: none;
+                width: 130px;
+                display: inline-block;
+                justify-content: center;
+                margin-right: 25px;
+                border-radius: 8px;
+                font-family: Roboto, sans-serif;
+              "
+            />
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="addreports"
+              tabindex="-1"
+              aria-labelledby="add Stipend modal"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog d-flex justify-content-center">
+                <div class="modal-content w-75" style="border-radius: 15px">
+                  <div class="modal-header">
+                    <img
+                      src="\img\Mess.png"
+                      style="
+                        width: 90px;
+                        height: 80px;
+                        margin-left: 120px;
+                        margin-top: 20px;
+                      "
+                    />
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <%- include('add_reports') -%>
+                </div>
+              </div>
+            </div>
+            <!-- Modal -->
+          </div>
+
+          <div class="row">
+            <form class="form-inline" method="post" action="/reports/search" style="margin-left: 25px; margin-bottom: 20px;">
+              <div class="form-group mb-2 mr-2">
+                <select class="form-control" name="year" required>
+                  <option value="">Choose Year</option>
+                  <% for (let year = 2017; year <= new Date().getFullYear(); year++) { %>
+                    <option value="<%= year %>" <%= (year == reports.year) ? 'selected' : '' %>><%= year %></option>
+                    <% } %>
+                </select>
+
+              </div>
+
+              <div class="form-group mb-2 mr-2">
+                <select class="form-control" name="month" required>
+                  <option value="">Choose Month</option>
+                  <option value="January" <%= (reports.month === 'January') ? 'selected' : '' %>>January</option>
+                  <option value="February" <%= (reports.month === 'February') ? 'selected' : '' %>>February</option>
+                  <option value="March" <%= (reports.month === 'March') ? 'selected' : '' %>>March</option>
+                  <option value="April" <%= (reports.month === 'April') ? 'selected' : '' %>>April</option>
+                  <option value="May" <%= (reports.month === 'May') ? 'selected' : '' %>>May</option>
+                  <option value="June" <%= (reports.month === 'June') ? 'selected' : '' %>>June</option>
+                  <option value="July" <%= (reports.month === 'July') ? 'selected' : '' %>>July</option>
+                  <option value="August" <%= (reports.month === 'August') ? 'selected' : '' %>>August</option>
+                  <option value="September" <%= (reports.month === 'September') ? 'selected' : '' %>>September</option>
+                  <option value="October" <%= (reports.month === 'October') ? 'selected' : '' %>>October</option>
+                  <option value="November" <%= (reports.month === 'November') ? 'selected' : '' %>>November</option>
+                  <option value="December" <%= (reports.month === 'December') ? 'selected' : '' %>>December</option>
+                </select>
+              </div>   
+
+              <input type="submit" class="btn btn-primary mb-2" value="Search" style="background-color: #32B9FF; border: none; width: 130px; justify-content: center;">
+            </form>
+          </div>
+
+          <% if(reports && reports.length > 0) { %>
+          <div class="container-fluid">
+            <%- include('partials/messages') -%> 
+            <% reports.slice(0, 5).forEach((report,index) => { %>
+            <!-- STARTS -->
+            <div class="row align-items-center" style="margin-top: 12px">
+              <div class="col-9">
+                <h2 style="font-size: 16px; margin-top: 20px">
+                  <%= report.month %>, <%= report.year %>: <%= report.title %>
+                </h2>
+              </div>
+              <div class="col-3">
+                <a href="#"
+                  class="btn btn-danger float-right btn-sm"
+                  data-toggle="modal"
+                  data-target="#deletereports<%= index %>"
+                  style="width: 24px; height: 24px; font-size: 11px; padding-right: 17px; padding-top: 6px; margin-bottom: 5px; margin-top: 20px;"><i class="fas fa-trash-alt"></i>
+                </a>
+
+                <!-- Starts Model -->
+                <div
+                  class="modal fade"
+                  id="deletereports<%= index %>"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div
+                      class="modal-content"
+                      style="border-radius: 15px; margin-top: 190px"
+                    >
+                      <div class="modal-header">
+                        <i
+                          class="fas fa-trash-alt"
+                          style="
+                            color: #000000;
+                            font-size: 60px;
+                            margin-left: 205px;
+                            margin-top: 20px;
+                          "
+                        ></i>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      <div
+                        class="modal-body"
+                        style="
+                          color: #000000;
+                          font-family: Roboto, sans-serif;
+                          font-size: 8px;
+                          text-align: center;
+                        "
+                      >
+                        <h4 style="font-family: Roboto, sans-serif">
+                          Are you sure you want to delete this Report? This
+                          process cannot be UNDONE.
+                        </h4>
+                        <form
+                          action="/reports/delete/<%=report._id%>"
+                          method="POST"
+                        >
+                          <button
+                            type="submit"
+                            class="btn btn-secondary"
+                            style="
+                              background-color: #cc1818;
+                              width: 90px;
+                              border: none;
+                              border-radius: 10px;
+                              margin-right: 10px;
+                              margin-top: 20px;
+                            "
+                          >
+                            Delete
+                          </button>
+                          <button
+                            type="button"
+                            data-dismiss="modal"
+                            class="btn btn-primary"
+                            style="
+                              background-color: #32b9ff;
+                              border: none;
+                              border-radius: 10px;
+                              width: 90px;
+                              margin-left: 10px;
+                              margin-top: 20px;
+                            "
+                          >
+                            Cancel
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Ends Model -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <iframe src="data:<%= report.file.contentType %>;base64,<%= report.file.data.toString('base64') %>"
+                  width="100%"
+                  height="400px" >
+                </iframe>
+              </div>
+            </div>
+            <% }) %>
+            <!-- ENDS -->
+
+            <br />
+          </div>
+          <br /><br />
+          <% } else { %>
+          <h1 class="text-center text-secondary mt-5">
+            No reports found in the Database!
+          </h1>
+          <% } %>
+        </div>
+      </div>
+      <%- include('partials/afooter') -%>
+    </div>
+  </div>
+</body>

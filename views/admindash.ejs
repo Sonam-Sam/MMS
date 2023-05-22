@@ -1,0 +1,545 @@
+<%- include('partials/aheader') -%>
+
+<!-- For Page Loader -->
+<div id="preloader"></div>
+
+<body id="page-top">
+  <div id="wrapper">
+    <%- include('partials/sidebar') -%>
+    <div class="d-flex flex-column" id="content-wrapper">
+      <div id="content">
+        <nav
+          class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top"
+        >
+          <%- include('partials/profiledrop') -%>
+        </nav>
+        
+        <div class="container-fluid">
+          <%- include('partials/messages') -%>
+          <div
+            class="d-sm-flex justify-content-between align-items-center mb-4"
+          >
+            <h3
+              class="text-dark mb-0"
+              style="font-family: Roboto, sans-serif; font-weight: bold"
+            >
+              Welcome Back Admin!
+            </h3>
+          </div>
+
+          <div id="services">
+            <div class="container">
+              <div class="services-list">
+                <div>
+                  <h5>USERS</h5>
+                  <h1><%= activeUsers %></h1>
+                  <!-- <a href="/users">Learn more</a> -->
+                </div>
+                <div>
+                  <h5>STIPEND IN</h5>
+                  <h1><%= data.stipendin %></h1>
+                  <!-- <a href="#">Learn more</a> -->
+                </div>
+
+                <div>
+                  <h5>TOTAL STIPEND</h5>
+                  <h1><%= data.total %></h1>
+                  <!-- <a href="#">Learn more</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <br /><br />
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <div>
+          <canvas id="myChart2" style="height: 400px"></canvas>
+        </div>
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+
+      <div class="container-fluid" style="margin-bottom: 40px">
+        <!-- Students Monthly Stipend Received -->
+        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+          <h3
+            class="text-dark mb-4"
+            style="
+              font-family: Roboto, sans-serif;
+              margin-left: 20px;
+              margin-top: 20px;
+              font-weight: bold;
+            "
+          >
+            Monthly Stipend Received
+          </h3>
+          <input
+            type="button"
+            class="btn btn-primary mb-2"
+            value="Add Stipend"
+            data-toggle="modal"
+            data-target="#staticBackdrop1"
+            style="
+              background-color: #32b9ff;
+              border: none;
+              width: 130px;
+              display: inline-block;
+              justify-content: center;
+              margin-right: 25px;
+              border-radius: 8px;
+              font-family: Roboto, sans-serif;
+            "
+          />
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="staticBackdrop1"
+            tabindex="-1"
+            aria-labelledby="add Stipend modal"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog d-flex justify-content-center">
+              <div class="modal-content w-75" style="border-radius: 15px">
+                <div class="modal-header">
+                  <img
+                    src="\img\Mess.png"
+                    style="
+                      width: 90px;
+                      height: 80px;
+                      margin-left: 120px;
+                      margin-top: 20px;
+                    "
+                  />
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body p-4">
+                  <form class="" action="/stipends" method="post">
+                    <!-- Month and Year -->
+                    <div class="form-group">
+                      <label
+                        class="form-label"
+                        for="choose_month"
+                        style="font-family: Roboto, sans-serif; color: #000000"
+                        >Month and Year</label
+                      >
+                      <input
+                        type="date"
+                        id="choose_month"
+                        name="date"
+                        class="form-control"
+                      />
+                      <div class="invalid-feedback" style="font-size: 12px">
+                        Date is required
+                      </div>
+                    </div>
+
+                    <!-- Total student -->
+                    <div class="form-group">
+                      <label
+                        class="form-label"
+                        for="total_student"
+                        style="font-family: Roboto, sans-serif; color: #000000"
+                        >Total Student</label
+                      >
+                      <input
+                        type="number"
+                        id="total_student"
+                        name="students"
+                        class="form-control"
+                      />
+                      <div class="invalid-feedback" style="font-size: 12px">
+                        Total Student is required
+                      </div>
+                    </div>
+
+                    <!-- Stipend per head -->
+                    <div class="form-group">
+                      <label
+                        class="form-label"
+                        for="stipend"
+                        style="font-family: Roboto, sans-serif; color: #000000"
+                        >Stipend/Head</label
+                      >
+                      <input
+                        type="number"
+                        id="stipend"
+                        name="stipend"
+                        class="form-control"
+                      />
+                      <div class="invalid-feedback" style="font-size: 12px">
+                        Stipend per head is required
+                      </div>
+                    </div>
+
+                    <!-- Cut off per head -->
+                    <div class="form-group">
+                      <label
+                        class="form-label"
+                        for="cutoff"
+                        style="font-family: Roboto, sans-serif; color: #000000"
+                        >Stipend after Cutoff/Head</label
+                      >
+                      <input
+                        type="number"
+                        id="cutoff"
+                        name="cutstipend"
+                        class="form-control"
+                      />
+                      <div class="invalid-feedback" style="font-size: 12px">
+                        Cut off per head is required
+                      </div>
+                    </div>
+
+                    <!-- Submit button -->
+
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block"
+                      style="
+                        background-color: #32b9ff;
+                        border: none;
+                        font-family: Roboto, sans-serif;
+                      "
+                    >
+                      Add
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
+        </div>
+
+        <!-- For table -->
+        <div class="container-fluid">
+          <div class="card shadow">
+            <div class="card-body">
+              
+              <div
+                class="table-responsive table mt-2"
+                id="dataTable"
+                role="grid"
+                aria-describedby="dataTable_info"
+              >
+                <table class="table dataTable my-0" id="dataTable">
+                  <thead>
+                    <tr>
+                      <th>Month & Year</th>
+                      <th>Total Std</th>
+                      <th>Stipend/Head</th>
+                      <th>Stipend after Cutoff/head</th>
+                      <th>Actual Stipend</th>
+                      <th>StipendIn</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% stipends.forEach((stipend, index) => { %>
+                    <tr>
+                      <td>
+                        <%= stipend.date ? stipend.date.toLocaleDateString() :
+                        '' %>
+                      </td>
+                      <td><%= stipend.students %></td>
+                      <td><%= stipend.stipend %></td>
+                      <td><%= stipend.cutstipend %></td>
+                      <td><%= stipend.total %></td>
+                      <td><%= stipend.stipendin %></td>
+
+                      <td>
+                        <button
+                          class="btn btn-info btn-sm"
+                          data-toggle="modal"
+                          data-target="#stipendEdit<%= index %>"
+                          style="
+                            width: 24px;
+                            height: 24px;
+                            font-size: 11px;
+                            padding-right: 18px;
+                          "
+                        >
+                          <i class="fas fa-edit" style="font-size: 12px"></i>
+                        </button>
+
+                        <div
+                          class="modal fade"
+                          id="stipendEdit<%= index %>"
+                          tabindex="-1"
+                          aria-labelledby="add Stipend modal"
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="modal-dialog d-flex justify-content-center"
+                          >
+                            <div
+                              class="modal-content w-75"
+                              style="border-radius: 15px"
+                            >
+                              <div class="modal-header">
+                                <img
+                                  src="\img\Mess.png"
+                                  style="
+                                    width: 90px;
+                                    height: 80px;
+                                    margin-left: 120px;
+                                    margin-top: 20px;
+                                  "
+                                />
+                                <button
+                                  type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
+                                >
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+
+                              <div class="modal-body p-4">
+                                <form
+                                  class=""
+                                  action="/stipends/<%= stipend.id %>"
+                                  method="post"
+                                >
+                                  <!-- Month and Year -->
+                                  <div class="form-group">
+                                    <label
+                                      class="form-label"
+                                      for="choose_month"
+                                      style="
+                                        font-family: Roboto, sans-serif;
+                                        color: #000000;
+                                      "
+                                      >Month and Year</label
+                                    >
+                                    <input
+                                      type="date"
+                                      id="choose_month"
+                                      name="date"
+                                      class="form-control"
+                                      value="<%= stipend.date ? stipend.date.toISOString().slice(0, 10) : '' %>"
+                                      required
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      style="font-size: 12px"
+                                    >
+                                      Date is required
+                                    </div>
+                                  </div>
+
+                                  <!-- Total student -->
+                                  <div class="form-group">
+                                    <label
+                                      class="form-label"
+                                      for="total_student"
+                                      style="
+                                        font-family: Roboto, sans-serif;
+                                        color: #000000;
+                                      "
+                                      >Total Student</label
+                                    >
+                                    <input
+                                      type="number"
+                                      id="total_student"
+                                      name="students"
+                                      class="form-control"
+                                      value="<%= stipend.students %>"
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      style="font-size: 12px"
+                                    >
+                                      Total Student is required
+                                    </div>
+                                  </div>
+
+                                  <!-- Stipend per head -->
+                                  <div class="form-group">
+                                    <label
+                                      class="form-label"
+                                      for="stipend"
+                                      style="
+                                        font-family: Roboto, sans-serif;
+                                        color: #000000;
+                                      "
+                                      >Stipend per head</label
+                                    >
+                                    <input
+                                      type="number"
+                                      id="stipend"
+                                      name="stipend"
+                                      class="form-control"
+                                      value="<%= stipend.stipend %>"
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      style="font-size: 12px"
+                                    >
+                                      Stipend per head is required
+                                    </div>
+                                  </div>
+
+                                  <!-- Cut off per head -->
+                                  <div class="form-group">
+                                    <label
+                                      class="form-label"
+                                      for="cutoff"
+                                      style="
+                                        font-family: Roboto, sans-serif;
+                                        color: #000000;
+                                      "
+                                      >Cut off per head</label
+                                    >
+                                    <input
+                                      type="number"
+                                      id="cutoff"
+                                      name="cutstipend"
+                                      class="form-control"
+                                      value="<%= stipend.cutstipend %>"
+                                    />
+                                    <div
+                                      class="invalid-feedback"
+                                      style="font-size: 12px"
+                                    >
+                                      Cut off per head is required
+                                    </div>
+                                  </div>
+
+                                  <!-- Submit button -->
+
+                                  <button
+                                    type="submit"
+                                    class="btn btn-primary btn-block"
+                                    style="
+                                      background-color: #32b9ff;
+                                      border: none;
+                                      font-family: Roboto, sans-serif;
+                                    "
+                                  >
+                                    Update
+                                  </button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- End Modal -->
+                      </td>
+                    </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%- include('partials/afooter') -%>
+    </div>
+  </div>
+</body>
+
+<!-- SCRIPTS FOR THE GRAPH -->
+
+<script>
+  function showEditModal(id) {
+    $("#editModal").modal("hide"); // Close the else part edit button modal window
+    $(".edit-btn").hide(); // Hide the else part edit button
+    $(".modal-backdrop").remove(); // Remove the modal backdrop
+    $(".if-part-button").trigger("click"); // Trigger the click event of the if part button
+  }
+</script>
+
+<script>
+   const labels = ['Use Amount', 'Balance'];
+   const data = [<%= data.useAmount %>, <%= data.balance %>];
+   const colors = ['#ff6384', '#36a2eb'];
+
+   const chart = new Chart(document.getElementById('myChart'), {
+     type: 'pie',
+     data: {
+       labels: labels,
+       datasets: [{
+         data: data,
+         backgroundColor: colors
+       }]
+     },
+     options: {
+       title: {
+         display: true,
+         text: 'Pie Chart'
+       },
+       maintainAspectRatio: false,
+       responsive: true,
+       plugins: {
+         labels: {
+           render: 'value',
+           fontColor: '#fff',
+           fontSize: 14,
+           fontStyle: 'bold'
+         }
+       }
+     }
+   });
+
+
+  const labels2 = [<% topItems.forEach(function(item) { %>'<%= item[0] %>',<% }); %>];
+  const data2 = [<% topItems.forEach(function(item) { %><%= item[1] %>,<% }); %>];
+
+  const colors2 = ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)'];
+
+  const ctx = document.getElementById('myChart2').getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+               labels: labels2,
+               datasets: [{
+                 label: 'Top Items',
+                 data: data2,
+                 backgroundColor: colors2,
+                //  borderColor: colors,
+                 borderWidth: 1
+               }]
+             },
+             options: {
+               scales: {
+                 yAxes: [{
+                   ticks: {
+                     beginAtZero: true
+                   }
+                 }]
+               },
+               maintainAspectRatio: false,
+               responsive: true
+             }
+           });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $(".edit-btn").click(function (e) {
+      e.preventDefault();
+      var url = $(this).attr("href");
+      $("#editModal").load(url, function () {
+        $(this).modal("show");
+      });
+    });
+  });
+</script>

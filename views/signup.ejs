@@ -1,0 +1,83 @@
+<%- include('partials/header') -%>
+
+<body id="page-top">
+
+<!-- ejs files starts -->
+<div class="login-clean">
+  <form action="/signup" method="POST" onsubmit="return validateForm()" style="background-color: rgb(255, 255, 255); border-radius: 15px">
+    <h2 class="sr-only">SignUp</h2>
+    <div class="illustration" style="margin-bottom: 20px">
+      <img src="/img/Mess.png" style="width: 100px; height: 100px" />
+    </div>
+  
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" />
+      <div class="error-message" id="name-error" style="color: red;"></div>
+    </div>
+  
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="user.gcit@rub.edu.bt"/>
+      <div class="error-message" id="email-error" style="color: red;"></div>
+    </div>
+  
+    <!-- Role -->
+    <div class="form-group">
+      <label for="role">Role</label><br>
+      <select type="text" class="form-control" id="role" name="role">
+        <option value="">Select Role</option>
+        <option value="Mess Captain">Mess Captain</option>
+        <option value="Staff">Staff</option>
+      </select>
+      <div class="error-message" id="role-error" style="color: red;"></div>
+    </div>
+  
+    <!-- Gender -->
+    <div class="form-group">
+      <label for="gender">Gender</label><br>
+      <select type="text" class="form-control" id="gender" name="gender">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <div class="error-message" id="gender-error" style="color: red;"></div>
+    </div>
+  
+    <!-- Contact -->
+    <div class="form-group">
+      <label for="contact">Contact Number</label>
+      <input type="text" class="form-control" id="contact" name="contact" placeholder="17970625/77234323"/>
+      <div class="error-message" id="contact-error" style="color: red;"></div>
+    </div>
+  
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="*****"/>
+      <div class="error-message" id="password-error" style="color: red;"></div>
+    </div>
+  
+    <div class="form-group">
+      <button class="btn btn-primary btn-block"
+        type="submit"
+        style="
+          background-color: rgb(50, 185, 255);
+          font-family: Roboto, sans-serif;
+          border-radius: 10px;
+          font-weight: semi-bold;
+        "
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>
+
+</body>
+<script src="/myScripts/signup.js"></script>
+
+<%- include('partials/footer') -%>
+

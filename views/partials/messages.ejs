@@ -1,0 +1,27 @@
+<% if(success_msg && success_msg != '') { %>
+    <div id="success-alert" class="alert alert-success"><%= success_msg %></div>
+<% } else if(error_msg && error_msg != '') { %>
+    <div id="error-alert" class="alert alert-danger"><%= error_msg %></div>
+<% } %>
+
+<% if(error && error != '') { %>
+    <div id="error-alert" class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<script>
+    // Set the timer for 5 seconds (5000 milliseconds)
+    setTimeout(function(){
+        // Remove the success alert if it exists
+        var successAlert = document.getElementById("success-alert");
+        if(successAlert){
+            successAlert.remove();
+        }
+        
+        // Remove the error alert if it exists
+        var errorAlert = document.getElementById("error-alert");
+        if(errorAlert){
+            errorAlert.remove();
+        }
+    }, 5000);
+</script>
+

@@ -1,0 +1,150 @@
+<%- include('partials/aheader') -%>
+
+<!-- For table -->
+<style>
+  .logo {
+      max-width: 100px;
+      max-height: 100px;
+  }
+
+  .table-heading {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 20px;
+      color: #000;
+      font-weight: bold;
+      opacity: 80%;
+  }
+
+  .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-left: 50px;
+      margin-right: 50px;
+  }
+
+  .heading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+  }
+</style>
+
+<!-- For Page Loader -->
+<div id="preloader"></div>
+
+<body id="page-top">
+    <div id="wrapper">
+        <%- include('partials/sidebar') -%>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <%- include('partials/profiledrop') -%>
+                </nav>
+
+                    <div class="container-fluid" style="margin-bottom: 40px;">
+                          <!-- Generate Report -->
+                          <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                                <h3 id="heading" class="text-dark mb-4"
+                                  style="font-family: Roboto, sans-serif; margin-left: 22px; margin-top: 25px; font-weight: bold;">
+                                  Generate Monthly Expense Report
+                                </h3>
+                          </div>
+
+                          <form class="form-inline" action="/makeReport" method="GET" style="margin-bottom: 30px;">
+                              <div class="form-group mb-4 mr-4">
+                                <select class="form-control" id="year" name="year" required>
+                                    <option value="">Choose Year</option>
+                                    <% for (let year = 2017; year <= new Date().getFullYear(); year++) { %>
+                                        <option value="<%= year %>" <%= (year == details.year) ? 'selected' : '' %>><%= year %></option>
+                                    <% } %>
+                                </select>
+                              </div>
+                              <div class="form-group mb-4 mr-4">
+                                <select class="form-control" id="month" name="month" required>
+                                  <option value="">Choose Month</option>
+                                  <% for (let i = 1; i <= 12; i++) { %>
+                                    <% const monthName = new Date(2000, i-1, 1).toLocaleDateString('default', { month: 'long' }); %>
+                                    <% const selected = (data.date instanceof Date && i === data.date.getMonth() + 1) ? 'selected' : ''; %>
+                                    <option value="<%= i %>" <%= selected %>><%= monthName %></option>
+                                    <% } %>
+
+                                </select>
+                              </div>
+                              <input type="submit" class="btn btn-primary mb-4" value="Generate" style="background-color: #32B9FF; border: none; width: 120px; justify-content: center;">
+                          </form>
+
+                          <%- include('partials/messages') -%>
+                          <% if (month && year) { %>
+                            
+                            <div style="display: flex; align-items: center;">
+                              <p style="font-size: 20px; font-weight: bold; color: #000; opacity: 80%; flex: 1;">Monthly Stipend Report for GCIT Mess</p>
+                              <input class="btn btn-primary mb-4" type="submit" value="Download" onclick="downloadDivAsPDF()" style="background-color: #32B9FF; border: none; width: 120px; justify-content: center;">
+                            </div>
+
+                            <div class="card shadow">
+
+                                <div class="card-body">
+                                    <div class="table-responsive table mt-2" id="downloadableDiv" role="grid" aria-describedby="dataTable_info">
+                                        <div class="logo-container" style="margin-bottom: 50px;">
+                                            <img src="\img\GCIT_Logo.png" alt="Logo 1" class="logo">
+                                            <div class="heading-container">
+                                                <p class="table-heading">GCIT Mess Management Report <br> Gyalpozhing College, Mongar</p>
+                                            </div>
+                                            <img src="/img/RUB_Logo.png" alt="Logo 2" class="logo">
+                                        </div>
+
+                                        <table class="table dataTable my-0">
+                                            <thead>
+                                              <tr>
+                                                  <th>Month/Year</th>
+                                                  <th>Total</th>
+                                                  <th>Stipend/Head</th>
+                                                  <th>Cutoff Stipend</th>
+                                                  <th>Stipend-In</th>
+                                                  <th>Expenditure</th>
+                                                  <th>Balance</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                  <td><%= month %>/<%= data.year %></td>
+                                                  <td><%= data.total %></td>
+                                                  <td><%= data.stipend %></td>
+                                                  <td><%= data.cutstipend %></td>
+                                                  <td><%= data.stipendin %></td>
+                                                  <td><%= data.useAmount %></td>
+                                                  <td><%= data.balance %></td>
+                                              </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                          <% }; %>
+
+                </div>
+
+            </div>
+            <%- include('partials/afooter') -%>
+        </div>
+    </div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+    function downloadDivAsPDF() {
+      var element = document.getElementById('downloadableDiv');
+
+      html2pdf()
+        .from(element)
+        .save('report.pdf');
+    } 
+</script>
+

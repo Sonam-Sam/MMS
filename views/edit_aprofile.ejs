@@ -1,0 +1,53 @@
+<!-- Modal -->
+<div class="modal fade" id="Update" tabindex="-1" aria-labelledby="add Stipend modal" aria-hidden="true">
+    <div class="modal-dialog d-flex justify-content-center">
+        <div class="modal-content w-75" style="border-radius: 15px; margin-left: 30px;">
+            <div class="modal-header">
+                <img src="\img\Mess.png" style="width: 90px;height: 80px; margin-left: 120px; margin-top: 20px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body p-4">
+                <form action="/new/<%= auser._id %>" method="POST" enctype="multipart/form-data">
+                    <!-- Name -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="name" style="font-family: Roboto, sans-serif; color: #000000; margin-right: 250px;">Full Name</label>
+                        <input type="text" id="name" name="name" value="<%= auser.name %>" class="form-control"/>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="gender" style="font-family: Roboto, sans-serif; color: #000000; margin-right: 270px;">Gender</label>
+                        <select type="text" class="form-control" id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male" <%= (auser.gender === 'Male') ? 'selected' : '' %>>Male</option>
+                            <option value="Female" <%= (auser.gender === 'Female') ? 'selected' : '' %>>Female</option>
+                        </select>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="contact" style="font-family: Roboto, sans-serif; color: #000000; margin-right: 270px;">Contact</label>
+                        <input type="text" id="contact" name="contact" value="<%=auser.contact %>" class="form-control" />
+                    </div>
+
+                    <!-- Image -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label1" for="formFile" style="font-family: Roboto, sans-serif; color: #000000; margin-right: 220px;">Profile Picture</label>
+                        <input class="form-control" type="file" id="formFile" name="image" style="padding-bottom: 35px;">
+                        
+                        <img class="rounded-circle profile-pic" src="/profiles/<%= auser.image ? auser.image : 'default_user.png' %>" width="100" class="img-thumbnail mt-1">
+                        
+                    </div>
+                    <input type="hidden" name="old_image" value="<%= auser.image %>">
+                    
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #32B9FF !important; border: none;padding-top: 8px; font-family: Roboto, sans-serif;">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->

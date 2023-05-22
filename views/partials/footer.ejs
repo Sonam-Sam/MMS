@@ -1,0 +1,139 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="/fonts/font-awesome.min.css">
+<link rel="stylesheet" href="/css/carousel.css">
+<link rel="stylesheet" href="/css/Custom-File-Upload.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/gradient-navbar-1.css">
+<link rel="stylesheet" href="/css/gradient-navbar.css">
+<link rel="stylesheet" href="/css/styles.css">
+
+<!-- footer -->
+<footer id="myFooter" style="background-color: #004aad; margin-top: 27px">
+	<div class="container-fluid" style="color: rgb(227, 14, 14)">
+	  <div class="row text-center">
+		<div class="col-12 col-sm-6 col-md-4 text-center">
+		  <img
+			src="/img/white_logo_1.png"
+			style="width: 100px; pointer-events: none"
+		  />
+  
+		  <div>
+			<a href="https://www.facebook.com/GCIT.Bhutan">
+			  <i
+				class="fa fa-facebook footer-contacts-icon"
+				style="
+				  transition: all 0.2s ease-in-out;
+				  background-color: #32b9ff;
+				"
+				onmouseover="this.style.backgroundColor='gray'; this.style.color='white';"
+				onmouseout="this.style.backgroundColor='rgb(8, 163, 255)'; this.style.color='';"
+				style="background-color: rgb(8, 163, 255)"
+			  >
+			  </i>
+			</a>
+			<a href="https://www.instagram.com/gcit_rub/">
+			  <i
+				class="fa fa-instagram footer-contacts-icon"
+				style="
+				  transition: all 0.2s ease-in-out;
+				  color: red;
+				  background-color: transparent;
+				"
+				onmouseover="this.style.backgroundColor='gray'; this.style.color='white';"
+				onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgb(234,9,9)';"
+			  >
+			  </i>
+			</a>
+			<a href="https://www.youtube.com/@gcit4943">
+			  <i
+				class="fa fa-youtube-play footer-contacts-icon"
+				style="
+				  transition: all 0.2s ease-in-out;
+				  color: red;
+				  background-color: transparent;
+				"
+				onmouseover="this.style.backgroundColor='gray'; this.style.color='white';"
+				onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgb(224,14,14)';"
+			  >
+			  </i>
+			</a>
+		  </div>
+		</div>
+		<div class="col-12 col-sm-6 col-md-4">
+		  <h5><span style="text-decoration: underline">Useful Link</span></h5>
+		  <ul>
+			<li><a href="https://www.gcit.edu.bt/">GCIT Website</a></li>
+			<li>
+			  <a href="https://vle.gcit.edu.bt/login/index.php"
+				>GCIT VLE<br
+			  /></a>
+			</li>
+			<li><a href="https://www.rub.edu.bt/">RUB</a></li>
+		  </ul>
+		</div>
+		<div class="col-12 col-sm-6 col-md-4">
+		  <h5><span style="text-decoration: underline">Contact Us</span></h5>
+		  <ul>
+			<li class="text-white">gcitmess@rub.edu.bt</li>
+			<li class="text-white">+975-17970625<br /></li>
+			<li class="text-white">+97502346578</li>
+		  </ul>
+		</div>
+	  </div>
+	  <hr style="color: rgb(234, 205, 205); background-color: #f4f0f0" />
+	  <p class="text-center" style="font-size: 12px">
+		Copyright © GCIT Mess 2023
+	  </p>
+	</div>
+  </footer>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/Custom-File-Upload.js"></script>
+
+<!-- Page Top icon -->
+<div id="scroll-to-top-container">
+	<a class="btn rounded-circle border-0 scroll-to-top" href="#page-top" style="background-color: rgb(50,185,255); padding-top: 11px;">
+	  <i class="fas fa-angle-up"></i>
+	</a>
+</div>
+
+<script>
+    var button = document.querySelector('#scroll-to-top-container');
+
+    window.addEventListener('scroll', function() {
+      button.style.display = (window.scrollY > 0) ? "block" : "none";
+    });
+
+    // Hide the button if the page is already at the top when the page loads
+    window.onload = function() {
+      if (window.scrollY === 0) {
+        button.style.display = "none";
+      }
+    };
+</script>
+
+<script src="/js/chart.min.js"></script>
+<script src="/js/bs-init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+<script src="/js/theme.js"></script>
+
+<script src="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("table").DataTable({
+            order : [0, 'desc']
+        });
+    });
+</script>
+
+<!-- Script for preloader -->
+<script>
+	var loader = document.getElementById("preloader");
+	window.addEventListener("load", function(){
+		loader.style.display = "none";
+	});
+</script>

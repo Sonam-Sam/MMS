@@ -1,0 +1,65 @@
+<%- include('partials/aheader') -%>
+
+<body id="page-top">
+  <div id="wrapper">
+    <%- include('partials/sidebar') -%>
+      <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+              <%- include('partials/profiledrop') -%>
+            </nav>
+
+            <!-- HERE IT STARTS -->
+
+            <div class="container">
+                <h4 class="my-4" style="color: #004AAD;"><strong>Profile</strong></h4>
+                <% users.forEach(user => { %>
+                <%- include('partials/messages') -%>
+                <div class="row">
+                    <div class="col-md-5 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body" style="background-color: #ECF6FF;">
+                                <img class="rounded-circle profile-pic" src="/profiles/<%= user.image ? user.image : 'default_user.png' %>" width="100" class="img-thumbnail mt-1">
+
+                                <!-- <img class="rounded-circle profile-pic" src="/profiles/<%= auser.image %>"> -->
+                                <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong><%= auser.gender === 'Male' ? 'Mr.' : 'Mrs.' %> <%= auser.name %></strong></h1>
+                                <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong><%= auser.role === 'super admin' ? 'Administrator' : auser.role %></strong></h1>
+                                <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Gyalpozhing Mess</strong></h1><br><br>
+                                
+                                <input type="button"  class="btn btn-primary mb-2" value="Update Profile" data-toggle="modal" data-target="#Update" style="background-color: #32B9FF; border: none; width: 180px; display: inline-block; justify-content: center; margin-right: 5px; border-radius: 20px;font-family: Roboto, sans-serif;">
+                            
+                                <%- include('edit_aprofile') -%>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body" style="background-color: #ECF6FF;">
+                                <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Full Name: </strong><br><%= auser.name %></h1><br>
+                                <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Email: </strong><br><%= auser.email %></h1><br>
+                                <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Gender: </strong><br><%= auser.gender %></h1><br>
+                                <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Contact Number: </strong><br>+975-<%=auser.contact %></h1><br> 
+                                <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Role: </strong><br><%= auser.role === 'super admin' ? 'Administrator' : auser.role %></h1>  
+                                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+
+
+            <!-- HERE IT ENDS -->
+              
+        </div>
+        <%- include('partials/afooter') -%>
+      </div>
+  </div>
+  
+</body>
+
+
+
+
+
